@@ -29,5 +29,5 @@ Execute the above GET from browser/postman.This should execute till only Step1De
 }
 ```
 
-<img src="https://i.postimg.cc/fyXPXbds/tody.jpg" style=" width:1000px ; height:1000px " />
+<img src="https://i.postimg.cc/fyXPXbds/tody.jpg" style=" width:500px ; height:500px " />
 
