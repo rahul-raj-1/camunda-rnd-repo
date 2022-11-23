@@ -28,4 +28,6 @@ Execute the above GET from browser/postman.This should execute till only Step1De
     "message": "FAILED DUE TO INVALID ORDER ID "
 }
 ```
-[tody.jpg](https://postimg.cc/WqNScTSY)
+
+<img src="https://i.postimg.cc/fyXPXbds/tody.jpg" style=" width:100px ; height:100px " />
+
