@@ -6,7 +6,7 @@ RnD repo
 ```java
 http://localhost:8080/order/2
 ```
-Execute the below GET from browser/postman.This will gracefully execute and below is the response which is correct
+Execute the below GET from browser/postman.This will gracefully execute and below is the response which is correct.My code is working fine for this scenario
 
 ```json
 {
