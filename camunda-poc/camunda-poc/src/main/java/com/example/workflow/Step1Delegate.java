@@ -1,16 +1,23 @@
 package com.example.workflow;
 
+import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Step1Delegate implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		
                int orderId = (int) execution.getVariable("orderId");
+               
 		
 		System.out.println(" Step1Delegate :  " + orderId);
+		        
+    //    Thread.sleep(20000);
+
 		
 		if(orderId < 0 )
 		{
@@ -22,9 +29,11 @@ public class Step1Delegate implements JavaDelegate {
 	        orderResponse.setMessage("FAILED DUE TO INVALID ORDER ID ");
 	        
 	        execution.setVariable("orderResponse", orderResponse);
-	        return;
+	        
+	        throw new BpmnError("100", "INVALID ");
 	        
 		}
+		
 		
 	}
 

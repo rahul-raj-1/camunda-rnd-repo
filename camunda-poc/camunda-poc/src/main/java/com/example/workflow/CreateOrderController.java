@@ -2,9 +2,13 @@ package com.example.workflow;
 
 
 	import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.TaskService;
+import org.camunda.bpm.engine.history.HistoricVariableInstance;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 	public class CreateOrderController  {
 		
 		  @Autowired 
-		  private RuntimeService runtimeService; 
+		  private RuntimeService runtimeService;
+		  
+		  @Autowired
+		 private  ProcessEngine processEngine;
+		  
+		  @Autowired
+		  private TaskService taskService;
 		  
 		
 		
@@ -30,24 +40,32 @@ import org.springframework.web.bind.annotation.RestController;
 	 
 	        
 
-	        runtimeService.startProcessInstanceByKey("poc-workflow",parameters);
+	        String  pi =    runtimeService.startProcessInstanceByKey("poc-workflow",parameters).getId();
 	       
 	    
+	        List<HistoricVariableInstance> variables = 
+	        		processEngine.getHistoryService()
+	        		.createHistoricVariableInstanceQuery()
+	        		.processInstanceId(pi)
+	        		.variableName("orderResponse")
+	        		.list();
 
-
+                      
 	        
-	        System.out.println("done");
-	        
+	        System.out.println("Controller done " );
 	        
 	        OrderResponse orderResponse = new OrderResponse();
 	        orderResponse.setOrderId(orderId);
 	        orderResponse.setMessage("SUCCESS");
 	        
+	        for( HistoricVariableInstance historicVariableInstance : variables)
+	        {
+	        	orderResponse=(OrderResponse) historicVariableInstance.getValue();
+	        }
 	        
-	      
-
-			return orderResponse;
+	        return orderResponse;
 			
+	        
 			
 			
 		}
