@@ -1,2 +1,6 @@
 /camunda-poc/camunda-poc/.idea/
 /camunda-poc/camunda-poc/target/
+camunda-h2-database.mv.db
+camunda-poc/camunda-poc/.classpath
+camunda-poc/camunda-poc/.project
+camunda-poc/camunda-poc/.settings/org.eclipse.jdt.core.prefs

@@ -1,20 +1,15 @@
 package com.example.workflow;
 
-
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.javassist.compiler.ast.Variable;
 import org.camunda.bpm.engine.HistoryService;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.history.HistoricVariableInstance;
-import org.camunda.bpm.engine.variable.Variables;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -44,9 +39,8 @@ public class CreateOrderController {
 
     OrderResponse orderResponse;
 
-    if (null!=variable) orderResponse = (OrderResponse) variable.getValue();
-    else
-    {
+    if (null != variable) orderResponse = (OrderResponse) variable.getValue();
+    else {
       orderResponse = new OrderResponse();
       orderResponse.setOrderId(orderId);
       orderResponse.setMessage("Meh");
